@@ -2,4 +2,6 @@
 
 set -o errexit
 
-./run_tests.sh
+pushd src/AspNetCoreExample
+  ./run_tests.sh
+popd
