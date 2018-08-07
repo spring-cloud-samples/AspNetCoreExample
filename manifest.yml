@@ -2,4 +2,4 @@
 applications:
 - name: AspNetCoreExample
   memory: 512M
-  buildpack: dotnet_core_buildpack
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack.git
