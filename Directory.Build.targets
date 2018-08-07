@@ -50,23 +50,28 @@
   </Target>
 
   <Target Name="CFPIntegrationTests" Condition="$(_CFPMainProjectFullPath) == $(ProjectDir)">
-    <Exec Command="./run_tests.sh"/>
+    <!-- <Exec Command="./run_tests.sh"/> -->
+    <Exec Command="echo $(SolutionDir)" />
   </Target>
 
   <Target Name="CFPApiCompatibilityTest" Condition="$(_CFPMainProjectFullPath) == $(ProjectDir)">
-    <Exec Command="./run_tests.sh"/>
+    <!-- <Exec Command="./run_tests.sh"/> -->
+    <Exec Command="echo $(SolutionDir)" />
   </Target>
 
   <Target Name="CFPSmokeTests" Condition="$(_CFPMainProjectFullPath) == $(ProjectDir)">
-    <Exec Command="echo $(SolutionDir)" />
+    <Exec Command='curl "$(APPLICATION_URL)/api/Customers" --fail' />
   </Target>
 
   <Target Name="CFPE2eTests" Condition="$(_CFPMainProjectFullPath) == $(ProjectDir)">
-    <Exec Command="echo $(SolutionDir)" />
+    <Exec Command='curl "$(APPLICATION_URL)/api/Customers" --fail' />
   </Target>
 
   <Target Name="CFPPublish" Condition="$(_CFPMainProjectFullPath) == $(ProjectDir)">
     <Exec Command="dotnet publish -c Release" />
+    <!-- Copy manifest and other CF rated files -->
+    <Exec Command="cp -v $(SolutionDir).* $(ProjectDir)$(OutputPath)publish || echo 'Done' " />
+    <Exec Command="cp -v $(SolutionDir)* $(ProjectDir)$(OutputPath)publish || echo 'Done' " />
     <!-- Windows publish -->
     <Exec Command="powershell Compress-Archive $(ProjectDir)$(OutputPath)\publish\* $(ProjectDir)$(OutputPath)\publish\publish.zip -Force" Condition="$([MSBuild]::IsOsPlatform(Windows))"/>
     <!-- Linux publish -->
