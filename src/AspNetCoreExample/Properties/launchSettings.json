@@ -24,7 +24,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "ContractTests"
       },
-      "applicationUrl": "http://+:5000"
+      "applicationUrl": "https://+:5000"
     }
   }
 }

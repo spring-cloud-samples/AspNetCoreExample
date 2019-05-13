@@ -27,7 +27,7 @@ namespace AspNetCoreExample
 
             if(!string.IsNullOrWhiteSpace(port))
             {
-                result.UseUrls($"http://+:{ port }");
+                result.UseUrls($"https://+:{ port }");
             }
             
             return result;
